@@ -17,10 +17,7 @@ module.exports = class XIcon extends Component {
             svg {
                 width: ${ this.size }px;
                 height: ${ this.size }px;
-                ${ Object.entries(this.svg)
-                    .map(([ key, value ]) => `${ key.replace(/[A-Z]/g, c => `-${ c }`) }: ${ value }`)
-                    .join(';\n')
-                }
+                fill: ${ this.color };
             }
         `;
     }
@@ -38,8 +35,5 @@ module.exports = class XIcon extends Component {
 module.exports.defaultProperties = {
     glyph: 'foo/bar',
     size: 24,
-    svg: {
-        fill: 'black',
-        stroke: 'none'
-    }
+    color: 'black'
 };

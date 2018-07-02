@@ -59,5 +59,8 @@ module.exports = class UserInterface extends Module {
 
             window.browser.loadURL(`data:text/html,${ window.html }`);
         }
+        else {
+            throw new Error('No');
+        }
     }
 }

@@ -13,7 +13,7 @@ module.exports = class XToolbar extends Component {
 
             #toolbar {
                 display: flex;
-                width: 56px;
+                width: 48px;
                 background: #4b485a;
             }
 
@@ -31,7 +31,7 @@ module.exports = class XToolbar extends Component {
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                height: 56px;
+                height: 48px;
             }
 
             #tools .tool.active {
@@ -50,13 +50,13 @@ module.exports = class XToolbar extends Component {
                 element('ul', { id: 'tools' }, [
                     element('li', { id: 'logo', className: 'tool' }),
                     element('li', { id: 'mapper', className: 'tool active' }, [
-                        element(Icon, { glyph: 'maps/terrain', size: 28, svg: { fill: 'white' } })
+                        element(Icon, { glyph: 'maps/terrain', size: 20, color: 'white' })
                     ]),
                     element('li', { id: 'mapper', className: 'tool' }, [
-                        element(Icon, { glyph: 'av/web', size: 28, svg: { fill: '#EEE' } })
+                        element(Icon, { glyph: 'action/dashboard', size: 20, color: '#9498a9' })
                     ]),
                     element('li', { id: 'mapper', className: 'tool' }, [
-                        element(Icon, { glyph: 'action/code', size: 28, svg: { fill: '#EEE' } })
+                        element(Icon, { glyph: 'action/settings', size: 20, color: '#9498a9' })
                     ])
                 ])
             ])
