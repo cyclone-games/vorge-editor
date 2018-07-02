@@ -18,11 +18,11 @@ module.exports = class WindowManager extends Module {
 
         app.subscribe('run').forEach(() => {
             this.register('root', { width: 800, height: 600 });
-            this.show('root');
+            this.open('root');
         });
     }
 
-    show (id = 'root') {
+    open (id, path = `${ __dirname }/../windows/`) {
         this.registered.get(id).loadURL(`data:text/html,
             <!doctype html>
             <html>
@@ -32,16 +32,12 @@ module.exports = class WindowManager extends Module {
                 <body>
                     <script>
                         {
-                            const ${ APPLICATION } = require('electron').remote.getGlobal('${ APPLICATION }');
+                            const electron = require('electron');
+                            const app = electron.remote.getGlobal('${ APPLICATION }');
+                            const path = '${( path.match(/\/$/) ? path : `${ path }/`).replace(/\\/g, '/') }${ id }';
+                            const window = require(path);
 
-                            function ${ APPLICATION }_MAIN (${ APPLICATION }) {
-                                const path = '${ __dirname.replace(/\\/g, '/') }/../windows/${ id }';
-                                const window = require(path);
-
-                                window.open(${ APPLICATION });
-                            }
-
-                            ${ APPLICATION }_MAIN(${ APPLICATION });
+                            window.open(app);
                         }
                     </script>
                 </body>
