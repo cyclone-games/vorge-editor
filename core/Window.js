@@ -1,6 +1,6 @@
 module.exports = class Window {
 
-    constructor (name, options, fn) {
+    constructor (name, fn) {
         this.kind = name;
         this.fn = fn;
     }
