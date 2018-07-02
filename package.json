@@ -1,0 +1,27 @@
+{
+  "name": "quill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "_": "electron _/entry.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyclonic-games/quill.git"
+  },
+  "author": "Cyclonic Games",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyclonic-games/quill/issues"
+  },
+  "homepage": "https://github.com/cyclonic-games/quill#readme",
+  "dependencies": {
+    "orion": "github:cyclonic-games/orion",
+    "quark": "github:cyclonic-games/quark",
+    "vorge": "github:cyclonic-games/vorge"
+  },
+  "devDependencies": {
+    "electron": "^3.0.0-beta.1"
+  }
+}
