@@ -1,5 +1,6 @@
 const Event = require('vorge/core/Event');
 
+const UserInterface = require('../modules/UserInterface');
 const WindowManager = require('../modules/WindowManager');
 
 module.exports = class Application extends Event.Emitter {
@@ -38,4 +39,5 @@ module.exports = class Application extends Event.Emitter {
     }
 };
 
+module.exports.ui = UserInterface;
 module.exports.windows = WindowManager;

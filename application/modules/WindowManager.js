@@ -1,6 +1,9 @@
+const fs = require('fs');
 const { BrowserWindow } = require('electron');
 
 const Module = require('../core/Module');
+
+const APPLICATION = `APPLICATION_${ Math.round(Math.random() * Date.now()) }`;
 
 module.exports = class WindowManager extends Module {
 
@@ -11,26 +14,42 @@ module.exports = class WindowManager extends Module {
     }
 
     connect (app) {
-        app.subscribe('run').forEach(method => {
-            this.register('root', {
-                src: '_/client.html',
-                width: 800,
-                height: 600
-            });
+        global[ APPLICATION ] = app;
 
-            this.open(...method.arguments);
+        app.subscribe('run').forEach(() => {
+            this.register('root', { width: 800, height: 600 });
+            this.show('root');
         });
     }
 
-    open (id = 'root') {
-        const { src, window } = this.registered.get(id);
+    show (id = 'root') {
+        this.registered.get(id).loadURL(`data:text/html,
+            <!doctype html>
+            <html>
+                <head>
+                    <title>${ this.app.kind }</title>
+                </head>
+                <body>
+                    <script>
+                        {
+                            const ${ APPLICATION } = require('electron').remote.getGlobal('${ APPLICATION }');
 
-        window.loadURL(`file://${ process.cwd() }/${ src }`);
+                            function ${ APPLICATION }_MAIN (${ APPLICATION }) {
+                                const path = '${ __dirname.replace(/\\/g, '/') }/../windows/${ id }';
+                                const window = require(path);
+
+                                window.open(${ APPLICATION });
+                            }
+
+                            ${ APPLICATION }_MAIN(${ APPLICATION });
+                        }
+                    </script>
+                </body>
+            </html>
+        `);
     }
 
-    register (id, { src, width, height }) {
-        const window = new BrowserWindow({ width, height });
-
-        this.registered.set(id, { src, window });
+    register (id, { width, height }) {
+        this.registered.set(id, new BrowserWindow({ width, height }));
     }
 }
