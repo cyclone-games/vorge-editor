@@ -30,7 +30,6 @@ module.exports = class UserInterface extends Module {
                             width: 100%;
                             height: 100%;
                             margin: 0;
-                            -webkit-app-region: drag;
                         }
                     </style>
                 </head>

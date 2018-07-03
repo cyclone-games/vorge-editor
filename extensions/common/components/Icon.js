@@ -7,6 +7,10 @@ module.exports = class XIcon extends Component {
 
     get css () {
         return `
+            :host {
+                line-height: 0;
+            }
+
             i {
                 display: inline-block;
                 margin: 0;

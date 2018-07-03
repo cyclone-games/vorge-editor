@@ -10,20 +10,56 @@ module.exports = class Container extends Component {
                 flex-direction: column;
                 width: 100%;
                 height: calc(100% - 2px);
-                background: #302f3d;
+                font-family: Verdana, sans-serif;
+                background: #252733;
                 border: 1px solid black;
+                border-radius: 5px;
             }
 
             #bar {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 32px;
-                font-family: Arial;
-                font-size: 10px;
+                height: 36px;
+                padding: 0 16px;
+                font-size: 11px;
                 color: white;
                 background: black;
+                border-radius: 4px 4px 0 0;
+
+                -webkit-app-region: drag;
+            }
+
+            #title {
+                flex-grow: 1;
+            }
+
+            #controls {
+                display: flex;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            #controls button {
+                width: 12px;
+                height: 12px;
+                margin-left: 10px;
+                padding: 0;
+                border: none;
+                outline: none;
+                border-radius: 100%;
+            }
+
+            #close {
+                background: #e41536;
+            }
+
+            #full {
+                background: #4eca17;
+            }
+
+            #minimize {
+                background: #eeba1b;
             }
 
             #content {
@@ -36,7 +72,20 @@ module.exports = class Container extends Component {
 
     render () {
         return [
-            element('div', { id: 'bar' }, 'Quill | Powered By Vorge'),
+            element('div', { id: 'bar' }, [
+                element('span', { id: 'title' }, document.title),
+                element('ul', { id: 'controls' }, [
+                    element('li', null, [
+                        element('button', { id: 'minimize' })
+                    ]),
+                    element('li', null, [
+                        element('button', { id: 'full' })
+                    ]),
+                    element('li', null, [
+                        element('button', { id: 'close' })
+                    ])
+                ])
+            ]),
             element('div', { id: 'content' }, [
                 element('slot')
             ])

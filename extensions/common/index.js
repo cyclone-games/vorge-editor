@@ -8,6 +8,6 @@ module.exports = new Extension('common', app => {
     });
 
     app.subscribe('run').forEach(() => {
-        app.ui.render('main', { width: 1024, height: 768, autoHideMenuBar: true, frame: false });
+        app.ui.render('main', { width: 1024, height: 768, autoHideMenuBar: true, frame: false, transparent: true, webPreferences: { webSecurity: false } });
     });
 });
