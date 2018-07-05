@@ -1,3 +1,5 @@
+const http = require('http');
+
 const { BrowserWindow } = require('electron');
 
 const Module = require('../core/Module');
