@@ -38,7 +38,8 @@ module.exports = class UserInterface extends Module {
                 <body>
                     <script>
                         {
-                            const application = require('electron').remote.getGlobal('${ APPLICATION }');
+                            const remote = require('electron').remote;
+                            const application = global.application = remote.getGlobal('${ APPLICATION }');
                             const window = require('${ src }');
 
                             window.open(application);
