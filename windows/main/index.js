@@ -11,11 +11,10 @@ const element = require('quark/core/element');
 
 const Window = require(`${ process.cwd() }/core/Window`);
 
-module.exports = new Window('main', app => {
+module.exports = new Window('main', host => {
     webfontloader.load({ google: { families: [ 'Open+Sans:300' ] } });
-
     element.renderNode(document.body, (
-        element(Frame, { name: 'Vorge Editor' }, [
+        element(Frame, { name: host.title }, [
             element(Menu, null, [
                 element(Menu.Item, null, 'File'),
                 element(Menu.Item, null, 'Edit'),
@@ -45,7 +44,19 @@ module.exports = new Window('main', app => {
                         ]),
                         element(Flex, { grow: 1 }),
                         element(Pane.Split, { basis: '380px', shrink: 1, grow: 0 }, [
-                            element(Pane, { grow: 1 }),
+                            element(Flex, { grow: 1, direction: 'column' }, [
+                                element(Tab.Group, null, [
+                                    element(Tab, { text: 'foo' }, [
+                                        element(Pane, { grow: 1 })
+                                    ]),
+                                    element(Tab, { text: 'bar' }, [
+                                        element(Pane, { grow: 1 })
+                                    ]),
+                                    element(Tab, { text: 'baz' }, [
+                                        element(Pane, { grow: 1 })
+                                    ])
+                                ])
+                            ]),
                             element(Pane, { grow: 1 })
                         ]),
                     ]),
@@ -68,7 +79,23 @@ module.exports = new Window('main', app => {
                     element('span', null, 'Another One')
                 ]),
                 element(Tab, { icon: 'action/code' }, [
-                    element('span', null, 'Another One')
+                    element(Toolbar, null, [
+
+                    ]),
+                    element(Pane.Split, { direction: 'row', grow: 1 }, [
+                        element(Pane, { basis: '240px', shrink: 1, grow: 0 }),
+                        element(Tab.Group, { fluid: true }, [
+                            element(Tab, { text: 'foo.js' }, [
+
+                            ]),
+                            element(Tab, { text: 'bar.js' }, [
+
+                            ]),
+                            element(Tab, { text: 'baz.js' }, [
+
+                            ])
+                        ])
+                    ])
                 ]),
                 element(Tab, { icon: 'action/dns' }, [
                     element('span', null, 'Another One')

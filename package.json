@@ -19,12 +19,9 @@
   "dependencies": {
     "color": "^3.0.0",
     "material-design-icons": "^3.0.1",
-    "orion": "github:cyclonic-games/orion",
-    "quark": "github:cyclonic-games/quark",
-    "vorge": "github:cyclonic-games/vorge",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "electron": "^3.0.0-beta.1"
+    "electron": "^2.0.4"
   }
 }
