@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "_": "electron _/entry.js"
+    "_": "electron main.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,7 @@
   },
   "homepage": "https://github.com/cyclonic-games/quill#readme",
   "dependencies": {
-    "color": "^3.0.0",
-    "material-design-icons": "^3.0.1",
-    "webfontloader": "^1.6.28"
+    "norway": "github:cyclonic-games/norway"
   },
   "devDependencies": {
     "electron": "^2.0.4"

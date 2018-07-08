@@ -1,4 +1,6 @@
-const webfontloader = require('webfontloader');
+const Window = require(`norway/core/Window`);
+
+const element = require('quark/core/element');
 
 const Flex = require('elementary/components/Flex');
 const Frame = require('elementary/components/Frame');
@@ -7,12 +9,7 @@ const Pane = require('elementary/components/Pane');
 const Tab = require('elementary/components/Tab');
 const Toolbar = require('elementary/components/Toolbar');
 
-const element = require('quark/core/element');
-
-const Window = require(`${ process.cwd() }/core/Window`);
-
 module.exports = new Window('main', host => {
-    webfontloader.load({ google: { families: [ 'Open+Sans:300' ] } });
     element.renderNode(document.body, (
         element(Frame, { name: host.title }, [
             element(Menu, null, [
