@@ -2,19 +2,12 @@ const Application = require('norway/core/Application');
 const common = require('norway/plugins/common');
 const electron = require('electron');
 
-const Toolbox = require('./modules/Toolbox');
-
-const scriptEditor = require('./tools/scriptEditor');
-
-Object.assign(Application.modules, {
-    tools: Toolbox
-});
+const vorge = require('./plugins/vorge');
 
 function main () {
-    const quill = new Application('Quill', [ common ]);
+    const quill = new Application('Quill', [ common, vorge ]);
 
     quill.ui.register('main', `${ process.cwd() }/windows/main`);
-    quill.tools.add(scriptEditor);
     quill.start();
 }
 

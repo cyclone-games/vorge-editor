@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/cyclonic-games/quill#readme",
   "dependencies": {
+    "ace-builds": "^1.3.3",
+    "juicy-ace-editor": "^2.0.5",
     "norway": "github:cyclonic-games/norway"
   },
   "devDependencies": {
