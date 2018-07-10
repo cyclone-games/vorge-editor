@@ -1,3 +1,10 @@
+// const aceEditor = require('ace-builds/src-noconflict/ace');
+// const aceMode = require('ace-builds/src-noconflict/mode-javascript');
+
+const fs = require('fs');
+
+const codemirror = require('codemirror');
+
 const Component = require('quark/core/Component');
 const element = require('quark/core/element');
 
@@ -6,7 +13,13 @@ const Pane = require('elementary/components/Pane');
 const Tab = require('elementary/components/Tab');
 const Toolbar = require('elementary/components/Toolbar');
 
-const ace = require('ace-builds/src/ace');
+require('codemirror/mode/javascript/javascript');
+
+const codemirrorPath = `${ process.cwd() }/node_modules/codemirror`;
+const codemirrorStyle = fs.readFileSync(`${ codemirrorPath }/lib/codemirror.css`);
+
+const codemirrorThemesPath = `${ process.cwd() }/node_modules/code-mirror-themes`;
+const codemirrorTheme = fs.readFileSync(`${ codemirrorThemesPath }/themes/ir_black.css`);
 
 class ScriptEditor extends Component {
 
@@ -25,21 +38,54 @@ class ScriptEditor extends Component {
 
             #editor {
                 position: absolute;
-                top: 0;
+                top: 4px;
                 right: 0;
                 bottom: 0;
                 left: 0;
+                /*text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.05);*/
+            }
+
+            ${ codemirrorStyle }
+
+            ${ codemirrorTheme }
+
+            #editor .CodeMirror {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+                font-size: 13px;
+                background: none !important;
+                background-color: transparent !important;
+            }
+
+            #editor .CodeMirror-gutters {
+                padding-right: 8px !important;
+                background-color: transparent !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+            }
+
+            #editor .CodeMirror-linenumber {
+                color: rgba(255, 255, 255, 0.75) !important;
             }
         `;
     }
 
     handleComponentReady () {
-        window.requestAnimationFrame(() => {
-            this.editor = ace.edit(this.shadowRoot.querySelector('#editor'));
-            this.editor.setTheme("ace/theme/twilight");
-            this.editor.session.setMode("ace/mode/javascript");
-            console.log(this.editor)
-        });
+        const container = this.shadowRoot.querySelector('#container');
+        const editor = container.querySelector('#editor');
+
+        window.setTimeout(() => {
+            codemirror(editor, {
+                mode: 'javascript',
+                theme: 'ir_black',
+                lineNumbers: true
+            });
+        }, 500)
     }
 
     render () {
@@ -51,12 +97,7 @@ class ScriptEditor extends Component {
                 element(Pane, { basis: '240px', shrink: 1, grow: 0 }),
                 element(Flex, { grow: 1, direction: 'column' }, [
                     element(Tab.Group, { fluid: true, style: { flexGrow: 0 } }, [
-                        element(Tab, { text: 'foo.js' }),
-                        element(Tab, { text: 'bar.js' }),
-                        element(Tab, { text: 'baz.js' }),
-                        element(Tab, { text: 'oof.js' }),
-                        element(Tab, { text: 'rab.js' }),
-                        element(Tab, { text: 'zab.js' })
+                        element(Tab, { text: 'foo.js' })
                     ]),
                     element('section', { id: 'container' }, [
                         element('article', { id: 'editor' })
