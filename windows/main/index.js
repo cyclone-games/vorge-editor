@@ -13,10 +13,10 @@ module.exports = new Window('main', application => {
     element.renderNode(document.body, (
         element(Frame, { name: application.title }, [
             element(Menu, null, [
-                element(Menu.Item, null, 'File'),
-                element(Menu.Item, null, 'Edit'),
-                element(Menu.Item, null, 'View'),
-                element(Menu.Item, null, 'Help'),
+                element(Menu.Item, { text: 'File' }),
+                element(Menu.Item, { text: 'Edit' }),
+                element(Menu.Item, { text: 'View' }),
+                element(Menu.Item, { text: 'Help' }),
             ]),
             element(Tab.Group, null, Object.values(application.tabs.collection).map(tab => (
                 element(Tab, { icon: tab.icon, name: tab.name }, [
