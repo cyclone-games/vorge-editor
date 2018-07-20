@@ -1,6 +1,3 @@
-// const aceEditor = require('ace-builds/src-noconflict/ace');
-// const aceMode = require('ace-builds/src-noconflict/mode-javascript');
-
 const fs = require('fs');
 
 const codemirror = require('codemirror');
@@ -129,6 +126,10 @@ class ScriptEditor extends Component {
                 color: white;
             }
 
+            #editor .CodeMirror-cursor {
+                border-left: 2px solid white;
+            }
+
             #editor .CodeMirror-scrollbar-filler {
                 background: none;
             }
@@ -220,7 +221,7 @@ class ScriptEditor extends Component {
             theme: 'ir_black',
             lineNumbers: true,
             autoCloseBrackets: true,
-            matchBrackets : true,
+            // matchBrackets : true,
             indentUnit: 4,
             scrollbarStyle: 'simple',
             ...this.codemirror
@@ -230,7 +231,9 @@ class ScriptEditor extends Component {
     render () {
         return [
             element(Toolbar, null, [
-
+                element(Toolbar.Button, { icon: 'content/save' }),
+                element(Toolbar.Button, { icon: 'content/undo' }),
+                element(Toolbar.Button, { icon: 'content/redo' })
             ]),
             element(Pane.Split, { direction: 'row', grow: 1 }, [
                 element(Pane, { basis: '240px', shrink: 1, grow: 0 }, [

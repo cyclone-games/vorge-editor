@@ -8,6 +8,7 @@ function main () {
     const quill = new Application('Quill', [ common, vorge ]);
 
     quill.ui.register('main', `${ process.cwd() }/windows/main`);
+
     quill.start();
 }
 
