@@ -204,9 +204,15 @@ class ScriptEditor extends Component {
                 top: 0;
                 width: 6px;
             }
+
             .CodeMirror-overlayscroll-vertical div {
                 right: 0;
                 width: 100%;
+            }
+
+            ${ Toolbar.elementName }:not(#main-toolbar) {
+                margin: -4px -4px 0;
+                border-top: 1px solid hsla(${ highlight[ 0 ] }, ${ highlight[ 1 ] }%, ${ highlight[ 2 ] }%, 1);
             }
         `;
     }
@@ -230,13 +236,20 @@ class ScriptEditor extends Component {
 
     render () {
         return [
-            element(Toolbar, null, [
+            element(Toolbar, { id: 'main-toolbar' }, [
                 element(Toolbar.Button, { icon: 'content/save' }),
                 element(Toolbar.Button, { icon: 'content/undo' }),
                 element(Toolbar.Button, { icon: 'content/redo' })
             ]),
             element(Pane.Split, { direction: 'row', grow: 1 }, [
                 element(Pane, { basis: '240px', shrink: 1, grow: 0 }, [
+                    element(Toolbar, { small: true }, [
+                        element(Toolbar.Label, { text: 'Scripts' }),
+                        element(Flex, { grow: 1, justify: 'flex-end' }, [
+                            element(Toolbar.Button, { icon: 'content/remove' }),
+                            element(Toolbar.Button, { icon: 'content/add' })
+                        ])
+                    ]),
                     element(Menu.Tree, { }, [
                         element(Menu.Item, { text: 'scripts' }, [
                             element(Menu.Item, { text: 'core' }, [

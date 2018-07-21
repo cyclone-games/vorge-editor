@@ -10,6 +10,8 @@ function main () {
     quill.ui.register('main', `${ process.cwd() }/windows/main`);
 
     quill.start();
+
+    console.log(electron.app.getPath('appData'))
 }
 
 electron.app.on('ready', main);
