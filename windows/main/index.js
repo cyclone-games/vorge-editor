@@ -19,12 +19,12 @@ module.exports = new Window('main', application => {
                 element(Menu.Item, { text: 'Help' }),
             ]),
             element(Tab.Group, null, Object.values(application.tabs.collection).map(tab => (
-                element(Tab, { icon: tab.icon, name: tab.name }, [
+                element(Tab, { icon: tab.icon, name: tab.name, align: tab.location || 'start' }, [
                     element(require(tab.src), { application })
                 ])
             )).concat([
-                element(Tab, { icon: 'navigation/apps', align: 'end' }, [
-                    
+                element(Tab, { icon: 'navigation/apps', name: 'Dashboard', align: 'end' }, [
+
                 ])
             ]))
         ])

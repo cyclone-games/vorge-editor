@@ -2,16 +2,13 @@ const Application = require('norway/core/Application');
 const common = require('norway/plugins/common');
 const electron = require('electron');
 
-const vorge = require('./plugins/vorge');
+const quill = require('./plugins/quill');
 
 function main () {
-    const quill = new Application('Quill', [ common, vorge ]);
+    const application = new Application('Quill', [ common, quill ]);
 
-    quill.ui.register('main', `${ process.cwd() }/windows/main`);
-
-    quill.start();
-
-    console.log(electron.app.getPath('appData'))
+    application.ui.register('main', `${ process.cwd() }/windows/main`);
+    application.start();
 }
 
 electron.app.on('ready', main);

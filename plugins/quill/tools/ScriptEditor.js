@@ -144,7 +144,7 @@ class ScriptEditor extends Component {
                 border-radius: 8px;
             }
 
-            .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
+            #editor .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
                 position: absolute;
                 z-index: 6;
                 background: hsla(${ highlight[ 0 ] }, ${ highlight[ 1 ] }%, ${ highlight[ 2 ] }%, 0.18) !important;
@@ -152,60 +152,61 @@ class ScriptEditor extends Component {
                 border-radius: 8px;
             }
 
-            .CodeMirror-simplescroll-horizontal {
+            #editor .CodeMirror-simplescroll-horizontal {
                 bottom: 0;
                 left: 0;
                 height: 8px;
             }
 
-            .CodeMirror-simplescroll-horizontal div {
+            #editor .CodeMirror-simplescroll-horizontal div {
                 bottom: 0;
                 height: 100%;
             }
 
-            .CodeMirror-simplescroll-vertical {
+            #editor .CodeMirror-simplescroll-vertical {
                 right: 0;
                 top: 0;
                 width: 8px;
             }
 
-            .CodeMirror-simplescroll-vertical div {
+            #editor .CodeMirror-simplescroll-vertical div {
                 right: 0;
                 width: 100%;
             }
 
-            .CodeMirror-overlayscroll .CodeMirror-scrollbar-filler, .CodeMirror-overlayscroll .CodeMirror-gutter-filler {
+            #editor .CodeMirror-overlayscroll .CodeMirror-scrollbar-filler, .CodeMirror-overlayscroll .CodeMirror-gutter-filler {
                 display: none;
             }
 
-            .CodeMirror-overlayscroll-horizontal div, .CodeMirror-overlayscroll-vertical div {
+            #editor .CodeMirror-overlayscroll-horizontal div, .CodeMirror-overlayscroll-vertical div {
                 position: absolute;
                 background: red;
                 border-radius: 3px;
             }
 
-            .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
+            #editor .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
                 position: absolute;
                 z-index: 6;
             }
 
-            .CodeMirror-overlayscroll-horizontal {
+            #editor .CodeMirror-overlayscroll-horizontal {
                 bottom: 0;
                 left: 0;
                 height: 6px;
             }
-            .CodeMirror-overlayscroll-horizontal div {
+
+            #editor .CodeMirror-overlayscroll-horizontal div {
                 bottom: 0;
                 height: 100%;
             }
 
-            .CodeMirror-overlayscroll-vertical {
+            #editor .CodeMirror-overlayscroll-vertical {
                 right: 0;
                 top: 0;
                 width: 6px;
             }
 
-            .CodeMirror-overlayscroll-vertical div {
+            #editor .CodeMirror-overlayscroll-vertical div {
                 right: 0;
                 width: 100%;
             }
@@ -265,8 +266,8 @@ class ScriptEditor extends Component {
                 ]),
                 element(Flex, { grow: 1, direction: 'column' }, [
                     element(Tab.Group, { fluid: true, style: { flexGrow: 0 } }, [
-                        element(Tab, { text: 'foo.js', temp: true }),
-                        element(Tab, { text: 'bar.js', temp: true })
+                        element(Tab, { text: 'foo.js', temporary: true }),
+                        element(Tab, { text: 'bar.js', temporary: true })
                     ]),
                     element('section', { id: 'container' }, [
                         element('article', { id: 'editor' })
@@ -277,7 +278,7 @@ class ScriptEditor extends Component {
     }
 }
 
-ScriptEditor.elementName = 'vorge-script-editor';
+ScriptEditor.elementName = 'quill-script-editor';
 
 ScriptEditor.defaultProperties = {
     codemirror: { }

@@ -50,13 +50,17 @@ class TilePainter extends Component {
                 margin: -4px -4px 0;
                 border-top: 1px solid hsla(${ highlight[ 0 ] }, ${ highlight[ 1 ] }%, ${ highlight[ 2 ] }%, 1);
             }
+
+            ${ Toolbar.elementName }#info-toolbar {
+                margin: 4px 0 -4px;
+            }
         `;
     }
 
     handleComponentReady () {
         const { brand } = palette;
 
-        requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
             const chunk = this.shadowRoot.getElementById('chunk');
             const context = chunk.getContext('2d');
 
@@ -68,7 +72,7 @@ class TilePainter extends Component {
                 context.fillStyle = `hsl(${ brand[ 0 ] }, ${ brand[ 1 ] }%, ${ brand[ 2 ] }%)`;
                 context.fillRect(x - (x % 32), y - (y % 32), 32, 32);
             };
-        })
+        });
     }
 
     render () {
@@ -112,9 +116,7 @@ class TilePainter extends Component {
                         ]),
                         element(Menu.Tree, { }, [
                             element(Menu.Item, { text: 'chunks' }, [
-                                element(Menu.Item, { text: 'spawn' }),
-                                element(Menu.Item, { text: 'forest-path-1' }),
-                                element(Menu.Item, { text: 'forest-path-2' })
+                                element(Menu.Item, { text: 'spawn' })
                             ])
                         ])
                     ])
@@ -162,13 +164,22 @@ class TilePainter extends Component {
                     ])
                 ]),
             ]),
-            element(Pane, { style: { marginTop: '4px' } }, [
-                element('div', { style: { height: '12px' } })
+            element(Toolbar, { id: 'info-toolbar', small: true }, [
+                element(Toolbar.Label, { text: 'Information' })
             ])
         ]
     }
 }
 
-TilePainter.elementName = 'vorge-tile-painter';
+TilePainter.elementName = 'quill-tile-painter';
+
+TilePainter.initialState = {
+    realm: null,
+    chunk: null,
+    layer: null,
+    tileset: null,
+    tile: null,
+    tool: null
+};
 
 module.exports = TilePainter;
